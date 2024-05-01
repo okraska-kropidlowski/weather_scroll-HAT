@@ -24,9 +24,12 @@ def select_location(coordinates):
         response = requests.get(address, params=parameters)
         weather_data = ((response.json().get("main")))
         temperature_celsius = (weather_data.get("temp") - 273.15)
-        temperature_display = str(round(temperature_celsius, 1))+"°C"
+        temperature_display = str(round(temperature_celsius, 1))+" C"
+        sphd.clear()
+        sphd.set_brightness(0.5)
         sphd.write_string(temperature_display)
         sphd.show()
+        sphd.scroll(1)
         time.sleep(10)
 
 map_widget = tkintermapview.TkinterMapView(location, width=800, height=600, corner_radius=0)
