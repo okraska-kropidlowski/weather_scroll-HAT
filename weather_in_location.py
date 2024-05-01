@@ -1,3 +1,4 @@
+import scrollphathd as sphd
 import tkinter
 import tkintermapview
 import requests
@@ -23,7 +24,9 @@ def select_location(coordinates):
         response = requests.get(address, params=parameters)
         weather_data = ((response.json().get("main")))
         temperature_celsius = (weather_data.get("temp") - 273.15)
-        print(format(temperature_celsius, '.1f'))
+        temperature_display = str(round(temperature_celsius, 1))+"°C"
+        sphd.write_string(temperature_display)
+        sphd.show()
         time.sleep(10)
 
 map_widget = tkintermapview.TkinterMapView(location, width=800, height=600, corner_radius=0)
